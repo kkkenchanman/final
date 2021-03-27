@@ -1,0 +1,280 @@
+body{
+  font-family: 'RocknRoll One', sans-serif;
+  margin: 0;
+}
+
+main{
+  max-width: 1280px;
+  width: 100vw;
+  margin:0 auto;
+  height: 90vh;
+}
+
+button{
+  display: block;
+  margin: auto;
+  width: 80%;
+  height: 5vh;
+  padding: 0.5em 1em;
+  text-decoration: none;
+  background: #F99292;/*ボタン色*/
+  color: #FFF;
+  font-family: 'Reggae One', cursive;
+  font-weight: bold;
+  font-size: 1.5rem;
+  border-bottom: solid 4px #FB7D79;
+  border-radius: 3px;
+  text-align: center;
+
+  &:active{
+      /*ボタンを押したとき*/
+  -webkit-transform: translateY(4px);
+  transform: translateY(4px);/*下に動く*/
+  border-bottom: none;/*線を消す*/
+  }
+
+  &:hover{
+    opacity: 0.7;
+  }
+
+  &:focus{
+    outline: none;
+  }
+}
+
+#header{
+  height: 10vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(#00c6ff, #0072ff);
+  color: white;
+  font-size: 2.5rem;
+  margin-bottom: 0;
+
+
+}
+
+#timer{
+  height: 20vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color:   #fcf7e6;
+  padding: 2vh 0;
+  border-top:  solid 1px #eeeeee;
+  border-right:  solid 1px #eeeeee;
+  border-left:  solid 1px #eeeeee;
+
+  p{
+    font-size: 7rem;
+    text-align: center;
+    margin-top: 0px;
+    width: 25%
+  };
+
+  .timerBtnContainer{
+    width: 20%;
+    display: flex;
+    justify-content: center;
+  }
+
+  button{
+    border-radius: 50%;
+    height: 15vh;
+    width: 15vh;
+    font-size: 1.2rem;
+    margin-right: 2vw;
+    margin-left: 2vw;
+  }
+
+  #timerReset{
+    background-color: rgb(197, 195, 195);
+    border-bottom: solid 4px #b4b4b4;
+  }
+}
+
+.timerStart{
+  background-color: #7ce797;
+  border-bottom: solid 4px #3bdd8c;
+}
+
+#count{
+  background-color:  #fcf7e6;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 2vh 0;
+  height: 15vh;
+  border-left:  solid 1px #eeeeee;
+  border-right:  solid 1px #eeeeee;
+  border-bottom:  solid 1px #eeeeee;
+
+  .countContentCenter{
+    width: 33%;
+    display: flex;
+    justify-content: center;
+    p{
+      font-size: 5rem;
+    }
+  };
+
+  .countContentLeft{
+    width: 33%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .countContentRight{
+    width: 33%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .countItem{
+    display: flex;
+
+    h2{
+      font-size: 5rem;
+    }
+  }
+
+  button{
+    border-radius: 50%;
+    height: 10vh;
+    width: 10vh;
+    text-align: center;
+    margin-right: 1vw;
+    margin-left: 1vw;
+    font-size: 2rem;
+  }
+  
+
+}
+
+
+
+#displayResult{
+  background-color:  #EEF9FF;
+  height: 45vh;
+  padding: 2vh 0;
+  border:  solid 1px #eeeeee;
+  
+  #tournamentName{
+    display: block;
+    margin: auto;
+    border: 1px solid #eeeeee;
+    background-color:  #dcf2fd;
+    border-radius: 50px;
+    height: 5vh;
+    font-size: 2rem;
+    text-align: center;
+    :hover{
+      opacity: 0.1;
+    }
+  }
+
+  table{
+    margin: auto;
+    width: 90%;
+    height: 80%;
+    text-align: center;
+    vertical-align: middle;
+    font-size: 2rem;
+
+    input{
+      border: 1px solid #eeeeee;
+      background-color:  #dcf2fd;
+      border-radius: 50px;
+      height: 5vh;
+      :hover{
+        opacity: 0.7;
+      }
+    }
+
+    th{
+      text-align: center;
+      vertical-align: middle;
+      border-bottom: 1px solid #000;
+      &:nth-child(2){
+        width: 40%;
+      }
+      &:nth-child(1){
+        width: 30%;
+      }
+      &:nth-child(3){
+        width: 30%;
+      }
+    }
+
+    td{
+      text-align: center;
+      vertical-align: middle;
+      border-bottom: 1px solid #000;
+      &:nth-child(2){
+        width: 40%;
+      }
+      &:nth-child(1){
+        width: 30%;
+      }
+      &:nth-child(3){
+        width: 30%;
+      }
+    }
+  }
+}
+
+#submit{
+  height: 10vh;
+  padding: 2vh 0;
+  margin: auto;
+
+
+
+  button{
+    width: 90%;
+  }
+
+  form{
+    margin: auto;
+  }
+
+  #gameFinish{
+    text-align: center;
+    margin: auto;
+    width: 80%;
+    height: 5vh;
+    padding: 0.5em 1em;
+    text-decoration: none;
+    background: #F99292;/*ボタン色*/
+    color: #FFF;
+    font-family: 'Reggae One', cursive;
+    font-weight: bold;
+    font-size: 1.5rem;
+    border-bottom: solid 4px #FB7D79;
+    border-radius: 3px;
+    text-align: center;
+    width:90%;
+    margin: 0 5%;
+  
+    &:active{
+        /*ボタンを押したとき*/
+    -webkit-transform: translateY(4px);
+    transform: translateY(4px);/*下に動く*/
+    border-bottom: none;/*線を消す*/
+    }
+  
+    &:hover{
+      opacity: 0.7;
+    }
+  
+    &:focus{
+      outline: none;
+    }
+  }
+}
+
+
+.close{
+  display: none;
+}

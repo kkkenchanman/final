@@ -1,0 +1,204 @@
+body{
+  font-family: 'RocknRoll One', sans-serif;
+  margin: 0;
+}
+
+main{
+  max-width: 1280px;
+  width: 100vw;
+  margin:0 auto;
+  height: 80vh;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1vh;
+}
+
+button{
+  display: block;
+  margin: auto;
+  width: 80%;
+  height: 5vh;
+  padding: 0.5em 1em;
+  text-decoration: none;
+  background: #F99292;/*ボタン色*/
+  color: #FFF;
+  font-family: 'Reggae One', cursive;
+  font-weight: bold;
+  font-size: 1.5rem;
+  border-bottom: solid 4px #FB7D79;
+  border-radius: 3px;
+  text-align: center;
+
+  &:active{
+      /*ボタンを押したとき*/
+  -webkit-transform: translateY(4px);
+  transform: translateY(4px);/*下に動く*/
+  border-bottom: none;/*線を消す*/
+  }
+
+  &:hover{
+    opacity: 0.7;
+  }
+
+  &:focus{
+    outline: none;
+  }
+}
+
+#header{
+  height: 10vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(#00c6ff, #0072ff);
+  color: white;
+  font-size: 2.5rem;
+  margin-bottom: 0;
+}
+
+#gameResultArea{
+  width: 49%;
+  height: 100%;
+  background-color:   #EEF9FF;
+  border:  solid 1px #eeeeee;
+
+  h1{
+    height: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    color: white;
+    background-color:  #78BBE6;
+  }
+
+  h2{
+    height: 3vh;
+    text-align: center;
+    font-size: 2rem;
+    margin-top: 3vh;
+  }
+
+  table{
+    margin: auto;
+    width: 90%;
+    height: 70%;
+    text-align: center;
+    vertical-align: middle;
+    font-size: 1.5rem;
+
+    th{
+      text-align: center;
+      vertical-align: middle;
+      border-bottom: 1px solid #000;
+      &:nth-child(2){
+        width: 40%;
+      }
+      &:nth-child(1){
+        width: 30%;
+      }
+      &:nth-child(3){
+        width: 30%;
+      }
+    }
+
+    td{
+      text-align: center;
+      vertical-align: middle;
+      border-bottom: 1px solid #000;
+      &:nth-child(2){
+        width: 40%;
+      }
+      &:nth-child(1){
+        width: 30%;
+      }
+      &:nth-child(3){
+        width: 30%;
+      }
+    }
+  }
+}
+
+#timeLineArea{
+  width: 49%;
+  height: 100%;
+  background-color:   #fcf7e6;
+  border:  solid 1px #eeeeee;
+
+  h1{
+    height: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    color: white;
+    background-color:   #FFBC61;
+  }
+
+  #timelineContents{
+    height: 90%;
+    overflow-y: scroll;
+    border-radius:0px 0px 20px 20px;
+  }
+
+  .timelineContent{
+    background-color: #fcf7e6;
+    border:  solid 1px #eeeeee;
+    box-sizing: border-box;
+    padding: 1vh;
+
+    h2{
+      text-align: center;
+      font-size: 1.2rem;
+    }
+
+    table{
+      margin: 0 auto;
+      width: 80%;
+      text-align: center;
+      vertical-align: middle;
+
+      th{
+        text-align: center;
+        vertical-align: middle;
+        border-bottom: 1px solid #000;
+        &:nth-child(2){
+          width: 40%;
+        }
+        &:nth-child(1){
+          width: 30%;
+        }
+        &:nth-child(3){
+          width: 30%;
+        }
+      }
+  
+      td{
+        text-align: center;
+        vertical-align: middle;
+        border-bottom: 1px solid #000;
+        &:nth-child(2){
+          width: 40%;
+        }
+        &:nth-child(1){
+          width: 30%;
+        }
+        &:nth-child(3){
+          width: 30%;
+        }
+      }
+    }
+  }
+}
+
+#nextGame{
+  height: 10vh;
+  padding: 2vh 0;
+  margin: auto;
+  max-width: 1280px;
+  width: 100vw;
+
+  button{
+    margin: 0 5%;
+  }
+}
