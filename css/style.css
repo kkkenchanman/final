@@ -48,20 +48,43 @@ button:focus {
 
 #header {
   height: 10vh;
+  background: -webkit-gradient(linear, left top, left bottom, from(#00c6ff), to(#0072ff));
+  background: linear-gradient(#00c6ff, #0072ff);
+  color: white;
+  margin-bottom: 0;
+}
+
+#headerContainer {
+  max-width: 1200px;
+  margin: auto;
+  height: 10vh;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  background: -webkit-gradient(linear, left top, left bottom, from(#00c6ff), to(#0072ff));
-  background: linear-gradient(#00c6ff, #0072ff);
-  color: white;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+#headerContainer h1 {
   font-size: 2.5rem;
-  margin-bottom: 0;
+}
+
+#rightContent {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: right;
+      -ms-flex-pack: right;
+          justify-content: right;
+}
+
+#rightContent p {
+  padding-right: 1vw;
+  font-size: 1.5rem;
 }
 
 #timer {

@@ -1,7 +1,23 @@
-
 <?php 
-require("../dbconnect.php");
 session_start();
+
+function dbConnect(){
+  $dsn = 'mysql:host=localhost;dbname=yukigassen_APP;charset=utf8';
+  $user = 'yukigassen_APP_user';
+  $pass = 'yukigassenAPP';
+
+  try{
+    $dbh = new PDO($dsn, $user, $pass, [
+      PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+    ]);
+  }catch(PDOException $e){
+    echo 'error'.$e->getMessage();
+    exit();
+  }
+  return $dbh;
+}
+
+$dbh = dbConnect();
 
 if (!empty($_POST)) {
     /* 入力情報の不備を検知 */
@@ -14,7 +30,7 @@ if (!empty($_POST)) {
     
     /* メールアドレスの重複を検知 */
     if (!isset($error)) {
-        $member = $db->prepare('SELECT COUNT(*) as cnt FROM users WHERE email=?');
+        $member = $dbh->prepare('SELECT COUNT(*) as cnt FROM users WHERE email=?');
         $member->execute(array(
             $_POST['email']
         ));
@@ -32,7 +48,6 @@ if (!empty($_POST)) {
     }
 }
 ?>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -68,6 +83,11 @@ if (!empty($_POST)) {
                 <?php if (!empty($error["password"]) && $error['password'] === 'blank'): ?>
                     <p class="error">＊パスワードを入力してください</p>
                 <?php endif ?>
+            </div>
+
+            <div class="control">
+                <label for="teamName">チーム名</label>
+                <input id="teamName" type="text" name="teamName">
             </div>
  
             <div class="control">

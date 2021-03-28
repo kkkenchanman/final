@@ -44,10 +44,6 @@ $sql="INSERT INTO
           :gameId
         )";
 
-  $stmt=$dbh->prepare($sql);
-  $stmt->execute();
-
-
 $dbh->beginTransaction();
 try{
   $stmt=$dbh->prepare($sql);
@@ -55,22 +51,11 @@ try{
   $stmt -> bindValue(':gameId',$id, PDO::PARAM_INT);
   $stmt->execute();
   $dbh->commit();
-  
+
   exit;
 }catch(PDOException $e){
   $dbh->rollback();
   exit($e);
 }
 
-
-
-// ----------------------------------------------------
-//  コメント表示
-//-----------------------------------------------------
-
-$sql = "SELECT * FROM comments WHERE gameId=$id";
-$stmt = $dbh->query($sql);
-$comments = $stmt->fetchall(PDO::FETCH_ASSOC);
-
-echo $comments[0]['comment'];
 ?>

@@ -44,15 +44,32 @@ button{
 
 #header{
   height: 10vh;
+  background: linear-gradient(#00c6ff, #0072ff);
+  color:white;
+  margin-bottom: 0;
+}
+
+#headerContainer{
+  max-width: 1200px;
+  margin: auto;
+  height: 10vh;
   display: flex;
   align-items: center;
-  justify-content: center;
-  background: linear-gradient(#00c6ff, #0072ff);
-  color: white;
-  font-size: 2.5rem;
-  margin-bottom: 0;
+  justify-content: space-between;
+  
+  h1{
+    font-size: 2.5rem;
+  }
+}
 
+#rightContent{
+  display: flex;
+  justify-content: right;
 
+  p{
+    padding-right: 1vw;
+    font-size: 1.5rem;
+  }
 }
 
 #timer{

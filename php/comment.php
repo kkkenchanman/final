@@ -32,17 +32,21 @@ $dbh = dbConnect();
 // ----------------------------------------------------
 //  試合結果を取得
 //-----------------------------------------------------
-$sql = "SELECT * FROM gameResults WHERE id = $id";
-$stmt = $dbh->query($sql);
-$result = $stmt->fetchall(PDO::FETCH_ASSOC);
-$column = $result[0];
+$sql = "SELECT * FROM gameResults WHERE id = :id";
+$stmt = $dbh -> prepare($sql);
+$stmt -> bindValue(':id',$id, PDO::PARAM_INT);
+$stmt->execute();
+$result = $stmt->fetch(PDO::FETCH_ASSOC);
+$column = $result;
 
 // ----------------------------------------------------
 //  コメントを取得
 //-----------------------------------------------------
-$sql = "SELECT * FROM comments WHERE gameId=$id";
-$stmt = $dbh->query($sql);
-$comments = $stmt->fetchall(PDO::FETCH_ASSOC);
+$sql = "SELECT * FROM comments WHERE gameId=:gameId";
+$stmt = $dbh -> prepare($sql);
+$stmt -> bindValue(':gameId',$id, PDO::PARAM_INT);
+$stmt->execute();
+$comments = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 ?>
 
@@ -95,8 +99,8 @@ $comments = $stmt->fetchall(PDO::FETCH_ASSOC);
       </form>
     <section>
       <div>
-      <?php foreach($comments as $column): ?>
-        <div><?php echo $column['comment'];?></div>
+      <?php foreach($comments as $comment): ?>
+        <div><?php echo $comment['comment'];?></div>
       <?php endforeach; ?>
       </div>
     </section>

@@ -1,4 +1,5 @@
-<?php 
+<?php
+session_start();
 ini_set( 'display_errors', 1 );
 ini_set( 'error_reporting', E_ALL );
 
@@ -91,7 +92,8 @@ function dbConnect(){
             victoryThrowOpponentCount,
             totalSetMyCount,
             totalSetOpponentCount,
-            winOrLose
+            winOrLose,
+            userId
             ) 
           VALUES(
             :tournamentName,
@@ -107,7 +109,8 @@ function dbConnect(){
             :victoryThrowOpponentCount,
             :totalSetMyCount,
             :totalSetOpponentCount,
-            1
+            1,
+            :userId
           )";
 
   $dbh = dbConnect();
@@ -127,6 +130,7 @@ function dbConnect(){
     $stmt -> bindValue(':victoryThrowOpponentCount',$victoryThrowOpponentCount, PDO::PARAM_INT);
     $stmt -> bindValue(':totalSetMyCount',$totalMyResults, PDO::PARAM_INT);
     $stmt -> bindValue(':totalSetOpponentCount',$totalOpponentResults, PDO::PARAM_INT);
+    $stmt -> bindValue(':userId',$_SESSION['user']['userId'], PDO::PARAM_INT);
     $stmt -> execute();
     $dbh -> commit();
   }catch(PDOException $e){
@@ -190,7 +194,7 @@ function dbConnect(){
         <td>トータル</td>
         <td id='totalOpponentResult'><?php echo $totalOpponentResults;?></td>
       </tr>
-    </table>      
+    </table>
   </section>
   <section id='timeLineArea'>
     <h1>タイムライン</h1>

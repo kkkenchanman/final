@@ -1,8 +1,26 @@
 	
 <?php
-require("./dbconnect.php");
+
 session_start();
- 
+
+function dbConnect(){
+  $dsn = 'mysql:host=localhost;dbname=yukigassen_APP;charset=utf8';
+  $user = 'yukigassen_APP_user';
+  $pass = 'yukigassenAPP';
+
+  try{
+    $dbh = new PDO($dsn, $user, $pass, [
+      PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+    ]);
+  }catch(PDOException $e){
+    echo 'error'.$e->getMessage();
+    exit();
+  }
+  return $dbh;
+}
+
+$dbh = dbConnect();
+
 /* 会員登録の手続き以外のアクセスを飛ばす */
 if (!isset($_SESSION['join'])) {
     header('Location: entry.php');
@@ -18,18 +36,35 @@ if (!empty($_POST['check'])) {
                 name,
                 email,
                 password,
-              )";
+                teamName
+              )
+            VALUES(
+              :name,
+              :email,
+              :password,
+              :teamName
+            )";
 
     // 入力情報をデータベースに登録
-    $statement = $db->prepare("INSERT INTO users SET name=?, email=?, password=?");
-    $statement->execute(array(
-        $_SESSION['join']['name'],
-        $_SESSION['join']['email'],
-        $hash
-    ));
- 
-    unset($_SESSION['join']);   // セッションを破棄
-    header('Location: thank.php');   // thank.phpへ移動
+    $dbh->beginTransaction();
+    try{
+      $stmt=$dbh->prepare($sql);
+      $stmt -> bindValue(':name',$_SESSION['join']['name'], PDO::PARAM_STR);
+      $stmt -> bindValue(':email',$_SESSION['join']['email'], PDO::PARAM_STR);
+      $stmt -> bindValue(':password',$hash, PDO::PARAM_STR);
+      $stmt -> bindValue(':teamName',$_SESSION['join']['teamName'], PDO::PARAM_STR);
+      $stmt->execute();
+      $dbh->commit();
+      header('Location: ./thank.php'); 
+      unset($_SESSION['join']); 
+      exit;
+    }catch(PDOException $e){
+      $dbh->rollback();
+      exit($e);
+    }
+
+      // セッションを破棄
+      // thank.phpへ移動
     exit();
 }
 ?>
@@ -39,9 +74,6 @@ if (!empty($_POST['check'])) {
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0">
     <title>確認画面</title>
-    <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
-    <link href="https://unpkg.com/sanitize.css" rel="stylesheet"/>
-    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
     <div class="content">
@@ -59,12 +91,14 @@ if (!empty($_POST['check'])) {
                 <p>ニックネーム</p>
                 <p><span class="fas fa-angle-double-right"></span> <span class="check-info"><?php echo htmlspecialchars($_SESSION['join']['name'], ENT_QUOTES); ?></span></p>
             </div>
- 
             <div class="control">
                 <p>メールアドレス</p>
                 <p><span class="fas fa-angle-double-right"></span> <span class="check-info"><?php echo htmlspecialchars($_SESSION['join']['email'], ENT_QUOTES); ?></span></p>
             </div>
-            
+            <div class="control">
+                <p>チーム名</p>
+                <p><span class="fas fa-angle-double-right"></span> <span class="check-info"><?php echo htmlspecialchars($_SESSION['join']['teamName'], ENT_QUOTES); ?></span></p>
+            </div>
             <br>
             <a href="entry.php" class="back-btn">変更する</a>
             <button type="submit" class="btn next-btn">登録する</button>
