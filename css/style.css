@@ -13,7 +13,7 @@ main {
 
 button {
   display: block;
-  margin: auto;
+  margin: 0 auto;
   width: 80%;
   height: 5vh;
   padding: 0.5em 1em;
@@ -85,6 +85,10 @@ button:focus {
 #rightContent p {
   padding-right: 1vw;
   font-size: 1.5rem;
+}
+
+#rightContent p:hover {
+  opacity: 0.7;
 }
 
 #timer {

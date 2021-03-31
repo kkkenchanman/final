@@ -1,0 +1,150 @@
+@charset "UTF-8";
+body {
+  font-family: 'RocknRoll One', sans-serif;
+  margin: 0;
+}
+
+#header {
+  height: 10vh;
+  background: -webkit-gradient(linear, left top, left bottom, from(#00c6ff), to(#0072ff));
+  background: linear-gradient(#00c6ff, #0072ff);
+  color: white;
+  margin-bottom: 0;
+}
+
+#headerContainer {
+  max-width: 1200px;
+  margin: auto;
+  height: 10vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+#headerContainer h1 {
+  font-size: 2.5rem;
+}
+
+#rightContent {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: right;
+      -ms-flex-pack: right;
+          justify-content: right;
+}
+
+#rightContent p {
+  padding-right: 1vw;
+  font-size: 1.5rem;
+  text-decoration: none;
+}
+
+#rightContent p:hover {
+  opacity: 0.7;
+}
+
+main {
+  max-width: 1280px;
+  margin: 0 auto;
+  height: 90vh;
+  background-color: #EEF9FF;
+  border: solid 1px #eeeeee;
+}
+
+main form h2 {
+  height: 10%;
+  text-align: center;
+  font-size: 2rem;
+  margin-top: 3vh;
+}
+
+main form table {
+  margin: auto;
+  width: 90%;
+  height: 70%;
+  text-align: center;
+  vertical-align: middle;
+  font-size: 1.5rem;
+}
+
+main form table tbody {
+  width: 100%;
+}
+
+main form table tbody th {
+  text-align: center;
+  vertical-align: middle;
+  border-bottom: 1px solid #000;
+}
+
+main form table tbody th:nth-child(2) {
+  width: 40%;
+}
+
+main form table tbody th:nth-child(1) {
+  width: 30%;
+}
+
+main form table tbody th:nth-child(3) {
+  width: 30%;
+}
+
+main form table tbody td {
+  text-align: center;
+  vertical-align: middle;
+  border-bottom: 1px solid #000;
+}
+
+main form table tbody td:nth-child(2) {
+  width: 40%;
+}
+
+main form table tbody td:nth-child(1) {
+  width: 30%;
+}
+
+main form table tbody td:nth-child(3) {
+  width: 30%;
+}
+
+main form #submit {
+  display: block;
+  margin: auto;
+  margin-top: 3vh;
+  width: 90%;
+  padding: 0.5em 1em;
+  text-decoration: none;
+  background: #F99292;
+  /*ボタン色*/
+  color: #FFF;
+  font-family: 'Reggae One', cursive;
+  font-weight: bold;
+  font-size: 1.5rem;
+  border-bottom: solid 4px #FB7D79;
+  border-radius: 3px;
+  text-align: center;
+}
+
+main form #submit:active {
+  /*ボタンを押したとき*/
+  -webkit-transform: translateY(4px);
+  transform: translateY(4px);
+  /*下に動く*/
+  border-bottom: none;
+  /*線を消す*/
+}
+
+main form #submit:hover {
+  opacity: 0.7;
+}
+
+main form #submit:focus {
+  outline: none;
+}

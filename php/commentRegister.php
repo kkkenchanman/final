@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 ini_set( 'display_errors', 1 );
 ini_set( 'error_reporting', E_ALL );
 
@@ -37,11 +37,15 @@ $id = $_POST['id'];
 $sql="INSERT INTO
         comments (
           comment,
-          gameId
+          gameId,
+          userId,
+          userName
         )
       VALUES(
           :comment,
-          :gameId
+          :gameId,
+          :userId,
+          :userName
         )";
 
 $dbh->beginTransaction();
@@ -49,9 +53,11 @@ try{
   $stmt=$dbh->prepare($sql);
   $stmt -> bindValue(':comment',$comment, PDO::PARAM_STR);
   $stmt -> bindValue(':gameId',$id, PDO::PARAM_INT);
+  $stmt -> bindValue(':userId',$_SESSION['userId'], PDO::PARAM_INT);
+  $stmt -> bindValue(':userName',$_SESSION['userName'], PDO::PARAM_STR);
   $stmt->execute();
   $dbh->commit();
-
+  header('Location: ./comment.php');
   exit;
 }catch(PDOException $e){
   $dbh->rollback();

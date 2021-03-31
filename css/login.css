@@ -1,0 +1,7 @@
+#header {
+  height: 10vh;
+  background: -webkit-gradient(linear, left top, left bottom, from(#00c6ff), to(#0072ff));
+  background: linear-gradient(#00c6ff, #0072ff);
+  color: white;
+  margin-bottom: 0;
+}

@@ -1,0 +1,191 @@
+@charset "UTF-8";
+body {
+  font-family: 'RocknRoll One', sans-serif;
+  margin: 0;
+}
+
+#header {
+  height: 10vh;
+  background: -webkit-gradient(linear, left top, left bottom, from(#00c6ff), to(#0072ff));
+  background: linear-gradient(#00c6ff, #0072ff);
+  color: white;
+  margin-bottom: 0;
+}
+
+#headerContainer {
+  max-width: 1200px;
+  margin: auto;
+  height: 10vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+#headerContainer h1 {
+  font-size: 2.5rem;
+}
+
+#rightContent {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: right;
+      -ms-flex-pack: right;
+          justify-content: right;
+}
+
+#rightContent p {
+  padding-right: 1vw;
+  font-size: 1.5rem;
+}
+
+#rightContent p:hover {
+  opacity: 0.7;
+}
+
+main {
+  max-width: 1280px;
+  margin: 0 auto;
+  height: 90vh;
+  background-color: #EEF9FF;
+  border: solid 1px #eeeeee;
+}
+
+main h2 {
+  height: 10%;
+  text-align: center;
+  font-size: 2rem;
+  margin-top: 3vh;
+}
+
+main table {
+  margin: auto;
+  width: 90%;
+  height: 30%;
+  text-align: center;
+  vertical-align: middle;
+  font-size: 1.5rem;
+}
+
+main table tbody {
+  width: 100%;
+}
+
+main table tbody th {
+  text-align: center;
+  vertical-align: middle;
+  border-bottom: 1px solid #000;
+}
+
+main table tbody th:nth-child(2) {
+  width: 40%;
+}
+
+main table tbody th:nth-child(1) {
+  width: 30%;
+}
+
+main table tbody th:nth-child(3) {
+  width: 30%;
+}
+
+main table tbody td {
+  text-align: center;
+  vertical-align: middle;
+  border-bottom: 1px solid #000;
+}
+
+main table tbody td:nth-child(2) {
+  width: 40%;
+}
+
+main table tbody td:nth-child(1) {
+  width: 30%;
+}
+
+main table tbody td:nth-child(3) {
+  width: 30%;
+}
+
+main #commentArea {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: 55%;
+}
+
+main #commentArea #commentLeft {
+  width: 50%;
+}
+
+main #commentArea #commentLeft #displayComment {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 80%;
+  margin: auto;
+  margin-bottom: 0.5vh;
+  border: 1px solid gray;
+  background-color: #f3f3f3;
+  padding: 1vh 1vw;
+}
+
+main #commentArea #commentLeft #displayComment .userName {
+  padding-right: 20px;
+}
+
+main #commentArea #commentRight {
+  width: 50%;
+}
+
+main #commentArea #commentRight textarea {
+  display: block;
+  margin: auto;
+  border: 1px solid #000;
+  background-color: #fff;
+}
+
+main #commentArea #commentRight p {
+  margin: auto;
+  margin-top: 2vh;
+}
+
+main #commentArea #commentRight p input {
+  width: 80%;
+  display: block;
+  margin: auto;
+  padding: 0.4em 1em;
+  text-decoration: none;
+  background: #F99292;
+  /*ボタン色*/
+  color: #FFF;
+  font-family: 'Reggae One', cursive;
+  font-weight: bold;
+  font-size: 1.2rem;
+  border-bottom: solid 4px #FB7D79;
+  border-radius: 3px;
+  text-align: center;
+}
+
+main #commentArea #commentRight p input:active {
+  /*ボタンを押したとき*/
+  -webkit-transform: translateY(4px);
+  transform: translateY(4px);
+  /*下に動く*/
+  border-bottom: none;
+  /*線を消す*/
+}
+
+main #commentArea #commentRight p input:hover {
+  opacity: 0.7;
+}
+
+main #commentArea #commentRight p input:focus {
+  outline: none;
+}

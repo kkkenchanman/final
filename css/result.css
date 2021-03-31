@@ -5,16 +5,10 @@ body {
 }
 
 main {
-  max-width: 1280px;
+  width: 1280px;
   width: 100vw;
   margin: 0 auto;
-  height: 80vh;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  height: 90vh;
   margin-top: 1vh;
 }
 
@@ -72,7 +66,7 @@ button:focus {
 }
 
 #gameResultArea {
-  width: 49%;
+  width: 100%;
   height: 100%;
   background-color: #EEF9FF;
   border: solid 1px #eeeeee;
@@ -146,91 +140,6 @@ button:focus {
   width: 30%;
 }
 
-#timeLineArea {
-  width: 49%;
-  height: 100%;
-  background-color: #fcf7e6;
-  border: solid 1px #eeeeee;
-}
-
-#timeLineArea h1 {
-  height: 10%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  font-size: 2rem;
-  color: white;
-  background-color: #FFBC61;
-}
-
-#timeLineArea #timelineContents {
-  height: 90%;
-  overflow-y: scroll;
-  border-radius: 0px 0px 20px 20px;
-}
-
-#timeLineArea .timelineContent {
-  background-color: #fcf7e6;
-  border: solid 1px #eeeeee;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-  padding: 1vh;
-}
-
-#timeLineArea .timelineContent h2 {
-  text-align: center;
-  font-size: 1.2rem;
-}
-
-#timeLineArea .timelineContent table {
-  margin: 0 auto;
-  width: 80%;
-  text-align: center;
-  vertical-align: middle;
-}
-
-#timeLineArea .timelineContent table th {
-  text-align: center;
-  vertical-align: middle;
-  border-bottom: 1px solid #000;
-}
-
-#timeLineArea .timelineContent table th:nth-child(2) {
-  width: 40%;
-}
-
-#timeLineArea .timelineContent table th:nth-child(1) {
-  width: 30%;
-}
-
-#timeLineArea .timelineContent table th:nth-child(3) {
-  width: 30%;
-}
-
-#timeLineArea .timelineContent table td {
-  text-align: center;
-  vertical-align: middle;
-  border-bottom: 1px solid #000;
-}
-
-#timeLineArea .timelineContent table td:nth-child(2) {
-  width: 40%;
-}
-
-#timeLineArea .timelineContent table td:nth-child(1) {
-  width: 30%;
-}
-
-#timeLineArea .timelineContent table td:nth-child(3) {
-  width: 30%;
-}
-
 #nextGame {
   height: 10vh;
   padding: 2vh 0;
@@ -240,5 +149,5 @@ button:focus {
 }
 
 #nextGame button {
-  margin: 0 5%;
+  margin: auto;
 }

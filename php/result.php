@@ -60,7 +60,6 @@ if(empty($names['opponentTeamName'])){
   $opponentTeamName = $names['opponentTeamName'];
 }
 
-
 function dbConnect(){
   $dsn = 'mysql:host=localhost;dbname=yukigassen_APP;charset=utf8';
   $user = 'yukigassen_APP_user';
@@ -76,6 +75,7 @@ function dbConnect(){
   }
   return $dbh;
 }
+
 
   $sql = "INSERT INTO 
           gameResults (
@@ -113,6 +113,7 @@ function dbConnect(){
             :userId
           )";
 
+  $register = false;
   $dbh = dbConnect();
   $dbh -> beginTransaction();
   try{
@@ -130,17 +131,14 @@ function dbConnect(){
     $stmt -> bindValue(':victoryThrowOpponentCount',$victoryThrowOpponentCount, PDO::PARAM_INT);
     $stmt -> bindValue(':totalSetMyCount',$totalMyResults, PDO::PARAM_INT);
     $stmt -> bindValue(':totalSetOpponentCount',$totalOpponentResults, PDO::PARAM_INT);
-    $stmt -> bindValue(':userId',$_SESSION['user']['userId'], PDO::PARAM_INT);
+    $stmt -> bindValue(':userId',$_SESSION['userId'], PDO::PARAM_INT);
     $stmt -> execute();
     $dbh -> commit();
+    
   }catch(PDOException $e){
     $dbh -> rollback();
     exit($e);
   }
-
-  $sql = 'SELECT * FROM gameResults';
-  $stmt = $dbh->query($sql);
-  $result = $stmt->fetchall(PDO::FETCH_ASSOC);
 
 ?>
 
@@ -184,61 +182,19 @@ function dbConnect(){
         <td>第3セット</td>
         <td class='opponentResult'><?php echo $thirdSetOpponentCount;?></td>
       </tr>
-      <tr id='victoryThrowResult' class='close'>
-        <td class='myResult'></td>
-        <td>VT</td>
-        <td class='opponentResult'></td>
-      </tr>
       <tr id='totalResult'>
         <td id='totalMyResult'><?php echo $totalMyResults;?></td>
         <td>トータル</td>
         <td id='totalOpponentResult'><?php echo $totalOpponentResults;?></td>
       </tr>
     </table>
+    <div id='nextGame'>
+      <p><button id='nextGameBtn'>NEXT GAME</button></p>   
+    </div>  
   </section>
-  <section id='timeLineArea'>
-    <h1>タイムライン</h1>
-    <div id='timelineContents'>
-      <?php foreach($result as $column): ?>
-        <div class="timelineContent">
-          <table>
-            <h2><?php echo $column['tournamentName']?></h2>
-            <tr>
-              <td><?php echo $column['myTeamName']?></td>
-              <td>VS</td>
-              <td><?php echo $column['opponentTeamName']?></td>
-            </tr>
-            <tr>
-              <td><?php echo $column['firstSetMyCount']?></td>
-              <td>FIRST SET</td>
-              <td><?php echo $column['firstSetOpponentCount']?></td>
-            </tr>
-            <tr>
-              <td><?php echo $column['secondSetMyCount']?></td>
-              <td>SECOND SET</td>
-              <td><?php echo $column['secondSetOpponentCount']?></td>
-            </tr>
-            <tr>
-              <td><?php echo $column['thirdSetMyCount']?></td>
-              <td>THIRD SET</td>
-              <td><?php echo $column['thirdSetOpponentCount']?></td>
-            </tr>
-            <tr>
-              <td><?php echo $column['totalSetMyCount']?></td>
-              <td>TOTAL SCORE</td>
-              <td><?php echo $column['totalSetOpponentCount']?></td>
-            </tr>
-          </table>
-          </div> 
-        <?php endforeach; ?>
-       
-    </div>
-    
-  </section>
+
   </main>
-  <section id='nextGame'>
-    <p><button id='nextGameBtn'>NEXT GAME</button></p>   
-  </section>  
+
 
 <script>
 $(function(){

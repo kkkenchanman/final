@@ -1,10 +1,10 @@
 <?php 
 session_start();
-session_start();
-if (!isset($_SESSION['user'])) {
-  header('Location: login.php');
+if (!isset($_SESSION['userId'])) {
+  header('Location: ./login/login.php');
   exit();
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -25,8 +25,8 @@ if (!isset($_SESSION['user'])) {
     <div id="headerContainer">
       <h1>YUKIGASSEN TIMER APP</h1>
       <div id='rightContent'>
-        <p><?php echo $_SESSION['user']['name'];?>さん</p>
         <a href="./resultLists.php"><p>結果一覧</p></a>
+        <a href="./login/login.php"><p>LOGOUT</p></a>
       </div>
     </div>
   </section>
@@ -57,7 +57,7 @@ if (!isset($_SESSION['user'])) {
   <p><input type="text" placeholder='大会名を入力' id='tournamentName'></p>
     <table>
       <tr>
-        <th><input type="text" placeholder='自チーム名を入力' id='myTeamName' value=<?php echo $_SESSION['user']['teamName']?>></th>
+        <th><input type="text" placeholder='自チーム名を入力' id='myTeamName'></th>
         <th>VS</th>
         <th><input type="text" placeholder='相手チーム名を入力' id='opponentTeamName'></th>
       </tr>
@@ -100,6 +100,5 @@ if (!isset($_SESSION['user'])) {
     </form>
   </section>
   </main>
-  
 </body>
 </html>

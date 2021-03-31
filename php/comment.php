@@ -1,12 +1,16 @@
 <?php
+session_start();
 ini_set( 'display_errors', 1 );
 ini_set( 'error_reporting', E_ALL );
 
 
-$id = $_GET['column'];
+// ----------------------------------------------------
+//  ゲームIDの受け取り
+//-----------------------------------------------------
 
-ini_set( 'display_errors', 1 );
-ini_set( 'error_reporting', E_ALL );
+if(!empty($_GET['gameId'])){
+  $_SESSION['gameId'] = $_GET['gameId'];
+};
 
 // ----------------------------------------------------
 //  データベース接続
@@ -34,37 +38,83 @@ $dbh = dbConnect();
 //-----------------------------------------------------
 $sql = "SELECT * FROM gameResults WHERE id = :id";
 $stmt = $dbh -> prepare($sql);
-$stmt -> bindValue(':id',$id, PDO::PARAM_INT);
+$stmt -> bindValue(':id',$_SESSION['gameId'], PDO::PARAM_INT);
 $stmt->execute();
 $result = $stmt->fetch(PDO::FETCH_ASSOC);
 $column = $result;
+
+// ----------------------------------------------------
+//  コメントを登録
+//-----------------------------------------------------
+
+if(!empty($_POST['comment'])){
+  $comment = $_POST['comment'];
+  $sql="INSERT INTO
+        comments (
+          comment,
+          gameId,
+          userId,
+          userName
+        )
+      VALUES(
+          :comment,
+          :gameId,
+          :userId,
+          :userName
+        )";
+
+$dbh->beginTransaction();
+try{
+  $stmt=$dbh->prepare($sql);
+  $stmt -> bindValue(':comment',$comment, PDO::PARAM_STR);
+  $stmt -> bindValue(':gameId',$_SESSION['gameId'], PDO::PARAM_INT);
+  $stmt -> bindValue(':userId',$_SESSION['userId'], PDO::PARAM_INT);
+  $stmt -> bindValue(':userName',$_SESSION['userName'], PDO::PARAM_STR);
+  $stmt->execute();
+  $dbh->commit();
+  header('Location: ./comment.php');
+  exit;
+}catch(PDOException $e){
+  $dbh->rollback();
+  exit($e);
+}
+};
 
 // ----------------------------------------------------
 //  コメントを取得
 //-----------------------------------------------------
 $sql = "SELECT * FROM comments WHERE gameId=:gameId";
 $stmt = $dbh -> prepare($sql);
-$stmt -> bindValue(':gameId',$id, PDO::PARAM_INT);
+$stmt -> bindValue(':gameId',$_SESSION['gameId'], PDO::PARAM_INT);
 $stmt->execute();
 $comments = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>コメント</title>
+  <link href="https://fonts.googleapis.com/css2?family=RocknRoll+One&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/reset.css">
+  <link rel="stylesheet" href="../css/comment.css">
 </head>
 <body>
-  <header>
-  
-  </header>
+<section id='header'>
+    <div id="headerContainer">
+      <h1>YUKIGASSEN TIMER APP</h1>
+      <div id='rightContent'>
+      <a href="./index.php"><p>タイマー</p></a>
+        <a href="./resultLists.php"><p>結果一覧</p></a>
+        <a href="./login/login.php"><p>LOGOUT</p></a>
+      </div>
+    </div>
+  </section>
   <main>
-    <section>
+      <h2><?php echo $column['tournamentName']?></h2>
       <table>
-        <h2><?php echo $column['tournamentName']?></h2>
         <tr>
           <td><?php echo $column['myTeamName']?></td>
           <td>VS</td>
@@ -91,19 +141,27 @@ $comments = $stmt->fetchAll(PDO::FETCH_ASSOC);
           <td><?php echo $column['totalSetOpponentCount']?></td>
         </tr>
       </table>
-    </section>
-      <form action="commentRegister.php" method="POST">
-        <textarea name="comment" id="comment" cols="40" rows="10"></textarea>
-        <input type="hidden" name='id' value=<?php echo $id;?>>
-        <input type="submit" value='コメントを登録する'>
-      </form>
-    <section>
-      <div>
-      <?php foreach($comments as $comment): ?>
-        <div><?php echo $comment['comment'];?></div>
-      <?php endforeach; ?>
+      <div id='commentArea'>
+        <div id='commentLeft'>
+          <h2>コメント一覧</h2>
+          <?php foreach($comments as $comment): ?>
+            <div id='displayComment'>
+              <div class='userName'>@<?php echo $comment['userName'];?></div>
+              <div><?php echo $comment['comment'];?></div>
+            </div>
+
+          <?php endforeach; ?>
+        </div>
+        <div id="commentRight">
+          <h2>コメント登録</h2>
+          <form action='' method="POST">
+            <textarea name="comment" id="comment" cols="60" rows="5"></textarea>
+            <p><input type="submit" value='コメントを登録する'></p>
+          </form>
+        </div>
       </div>
-    </section>
+
+
   </main>
           
 </body>

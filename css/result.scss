@@ -4,12 +4,10 @@ body{
 }
 
 main{
-  max-width: 1280px;
+  width: 1280px;
   width: 100vw;
   margin:0 auto;
-  height: 80vh;
-  display: flex;
-  justify-content: space-between;
+  height: 90vh;
   margin-top: 1vh;
 }
 
@@ -57,7 +55,7 @@ button{
 }
 
 #gameResultArea{
-  width: 49%;
+  width: 100%;
   height: 100%;
   background-color:   #EEF9FF;
   border:  solid 1px #eeeeee;
@@ -119,77 +117,6 @@ button{
   }
 }
 
-#timeLineArea{
-  width: 49%;
-  height: 100%;
-  background-color:   #fcf7e6;
-  border:  solid 1px #eeeeee;
-
-  h1{
-    height: 10%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 2rem;
-    color: white;
-    background-color:   #FFBC61;
-  }
-
-  #timelineContents{
-    height: 90%;
-    overflow-y: scroll;
-    border-radius:0px 0px 20px 20px;
-  }
-
-  .timelineContent{
-    background-color: #fcf7e6;
-    border:  solid 1px #eeeeee;
-    box-sizing: border-box;
-    padding: 1vh;
-
-    h2{
-      text-align: center;
-      font-size: 1.2rem;
-    }
-
-    table{
-      margin: 0 auto;
-      width: 80%;
-      text-align: center;
-      vertical-align: middle;
-
-      th{
-        text-align: center;
-        vertical-align: middle;
-        border-bottom: 1px solid #000;
-        &:nth-child(2){
-          width: 40%;
-        }
-        &:nth-child(1){
-          width: 30%;
-        }
-        &:nth-child(3){
-          width: 30%;
-        }
-      }
-  
-      td{
-        text-align: center;
-        vertical-align: middle;
-        border-bottom: 1px solid #000;
-        &:nth-child(2){
-          width: 40%;
-        }
-        &:nth-child(1){
-          width: 30%;
-        }
-        &:nth-child(3){
-          width: 30%;
-        }
-      }
-    }
-  }
-}
 
 #nextGame{
   height: 10vh;
@@ -199,6 +126,6 @@ button{
   width: 100vw;
 
   button{
-    margin: 0 5%;
+    margin: auto;
   }
 }
